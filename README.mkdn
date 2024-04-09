@@ -1,36 +1,32 @@
-LineageOS
-===========
+obeny's LineageOS 21.0
+================
 
 Getting started
 ---------------
 
-To get started with Android/LineageOS, you'll need to get familiar with [Source Control Tools](https://source.android.com/setup/develop).
-
-To initialize your local repository using the LineageOS trees, use a command like this:
+To initialize your local repository use:
 ```
-repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --git-lfs
+mkdir los_src
+cd los_src
+repo init -u https://github.com/obeny/los_manifest.git -b lineage-21.0 --git-lfs
+cd .repo/manifests && git submodule update --init --recursive && cd ../../..
 ```
-Then to sync up:
+
+To prepare a roomservice for the device:
 ```
-repo sync
+mkdir -p .repo/local_manifests && ln -s "$(readlink -f .repo/manifests/local_manifests/kebab_roomservice.xml)" ".repo/local_manifests/roomservice.xml"
 ```
-Please see the [LineageOS Wiki](https://wiki.lineageos.org/) for building instructions, by device.
 
+Sync up:
+```
+repo sync -c -j$(nproc --all) --force-sync
+```
 
-Submitting patches
-------------------
-Patches are always welcome! Please submit your patches via LineageOS Gerrit!
-
-Simply follow our guide on [how to submit patches](https://wiki.lineageos.org/submitting-patch-howto.html).
-
-To view the status of your and others' patches, visit [LineageOS Gerrit Code Review](https://review.lineageos.org/).
-
-
-Buildbot
---------
-
-All supported devices are built weekly and periodically as changes are committed to ensure the source trees remain buildable.
-
-You can view the current build statuses at [LineageOS Buildkite](https://buildkite.com/lineageos).
-
-Builds produced weekly by the buildbot can be downloaded from [LineageOS downloads](https://download.lineageos.org/).
+Build:
+```
+source .repo/manifests/extra/env.sh
+source build/envsetup.sh
+breakfast kebab
+croot
+brunch kebab
+```
