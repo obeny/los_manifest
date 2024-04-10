@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <!-- Remotes -->
+    <remote name="evo"
+	fetch="https://github.com/Evolution-X"
+	sync-c="true"
+	sync-j="4"
+    />
+    <remote name="bitbucket-prv" fetch="git@bitbucket.org:obeny" />
+
+    <!-- Replacements -->
+    <project path="frameworks/base" name="obeny/los_frameworks_base" groups="pdk-cw-fs,pdk-fs,sysui-studio" revision="lineage-21.0" />
+    <project path="packages/apps/Settings" name="obeny/los_packages_apps_Settings" groups="pdk-fs" revision="lineage-21.0" />
+    <project path="packages/apps/Updater" name="obeny/los_packages_apps_Updater" revision="lineage-21.0" />
+    <project path="vendor/lineage" name="obeny/los_vendor_lineage" revision="lineage-21.0" />
+
+    <!-- Face Unlock -->
+    <project path="packages/apps/FaceUnlock" name="packages_apps_FaceUnlock" remote="evo" revision="refs/heads/udc" />
+
+    <!-- Signing keys -->
+    <project path="vendor/lineage-priv" name="android_build_keys" remote="bitbucket-prv" revision="refs/heads/master" />
+</manifest>
