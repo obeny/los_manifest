@@ -1,0 +1,3 @@
+[submodule "extra"]
+	path = extra
+	url = git@github.com:obeny/android_build_extra.git
